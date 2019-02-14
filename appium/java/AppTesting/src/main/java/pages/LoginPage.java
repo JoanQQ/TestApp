@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import utils.HnaDriver;
+import utils.SingleDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,17 +16,8 @@ public class Page登录 extends BasePage {
         find(this.username).sendKeys(username);
         find(this.password).sendKeys(password);
         find(loginBtn).click();
-        HnaDriver.getCurrentDriver().manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+        SingleDriver.getInstance().manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
 
         return new Page首页();
     }
-
-    /**
-     public Page登录 failedLogin(String usernmae, String password) {
-     HnaDriver.getCurrentDriver().findElement(By.id(loginBtn)).click();
-     HnaDriver.getCurrentDriver().findElement(By.id(username)).sendKeys("7050812098");
-     HnaDriver.getCurrentDriver().findElement(By.id(password)).sendKeys("121321");
-
-     }
-     */
 }

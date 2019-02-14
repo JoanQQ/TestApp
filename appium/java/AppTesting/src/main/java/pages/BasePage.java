@@ -1,12 +1,12 @@
 package pages;
 
-import utils.HnaDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.SingleDriver;
 
 public class BasePage {
     static WebElement find(By locator) {
-        return HnaDriver.getCurrentDriver().findElement(locator);
+        return SingleDriver.getInstance().findElement(locator);
     }
 
     static By locate(String locator) {
@@ -20,11 +20,4 @@ public class BasePage {
     static By text(String content) {
         return By.xpath("//*[@text='"+ content + "']");
     }
-
-    /**
-    static MobileElement wait(HnaDriver driver, int time, String locator) {
-        WebElement webElement = new WebDriverWait((WebDriver) driver, time).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
-        return (MobileElement)webElement;
-    }
-    */
 }
