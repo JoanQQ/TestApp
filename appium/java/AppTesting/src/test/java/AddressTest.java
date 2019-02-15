@@ -8,14 +8,15 @@ public class AddressTest extends TestCase {
     @Test
     public void testAddress() {
         SingleDriver.getInstance();
-        Page我的 page我的 = new Page我的();
-        Page常用邮寄地址 page常用邮寄地址 = page我的.gotoAddressPage();
-        page常用邮寄地址.createAddress();
-        page常用邮寄地址.verifyRequiredFileds();
+        AddressPage addressPage = new AddressPage();
+        addressPage.createAddress();
+        addressPage.verifyRequiredFileds();
     }
 
+    /**
     @AfterClass
     public void tearDown() {
         SingleDriver.getInstance().quit();
     }
+    */
 }

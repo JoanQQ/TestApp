@@ -9,6 +9,7 @@ import utils.SingleDriver;
 import java.util.concurrent.TimeUnit;
 
 public class MinePage extends BasePage {
+    public static MinePage minePage() { return new MinePage(); }
     private By normalAddress = By.xpath("//android.widget.TextView[@text='常用邮寄地址' and @instance='17']");
 
     public AddressPage gotoAddressPage() {

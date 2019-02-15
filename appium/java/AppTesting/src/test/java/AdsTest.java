@@ -1,9 +1,7 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-import pages.PageGdpr;
-import pages.Page广告页;
-import pages.Page授权;
-import pages.Page首页;
+import pages.AdsPage;
+import pages.MainPage;
 import utils.SingleDriver;
 
 /**
@@ -15,7 +13,7 @@ public class AdsTest extends TestCase {
     @Test
     public void testAds() {
         SingleDriver.getInstance();
-        Page广告页 page广告页 = new Page广告页();
-        Page首页 mainPage1 = page广告页.gotoMainPage();
+        AdsPage adsPage = new AdsPage();
+        adsPage.gotoMainPage();
     }
 }

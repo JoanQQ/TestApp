@@ -1,9 +1,9 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import pages.Page登录;
+import pages.LoginPage;
 import utils.SingleDriver;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Phyllis
@@ -28,7 +28,8 @@ public class LoginTest extends TestCase {
     @Test
     public void testLogin() {
         SingleDriver.getInstance();
-        Page登录 page登录 = new Page登录();
-        page登录.gotoMainPage("7050812098","121321");
+        LoginPage loginPage = new LoginPage();
+        loginPage.gotoMainPage("7050812098","121321");
+        SingleDriver.getInstance().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 }

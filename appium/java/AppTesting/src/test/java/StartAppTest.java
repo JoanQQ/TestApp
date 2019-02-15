@@ -10,6 +10,6 @@ public class StartAppTest extends TestCase {
     @Test
     public void testStart() {
         SingleDriver.getInstance();
-        System.out.println("成功打开海南航空App, using AppDriver");
+        System.out.println("Successful opening, using SingleDriver with the same session");
     }
 }

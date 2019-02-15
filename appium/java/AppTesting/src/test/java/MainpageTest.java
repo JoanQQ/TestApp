@@ -1,7 +1,7 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-import pages.Page首页;
-import pages.Page登录;
+import pages.MainPage;
+import pages.LoginPage;
 import utils.SingleDriver;
 
 /**
@@ -13,7 +13,7 @@ public class MainpageTest extends TestCase {
     @Test
     public void testAds() {
         SingleDriver.getInstance();
-        Page首页 mainPage1 = new Page首页();
-        Page登录 loginPage = mainPage1.gotoLoginPage();
+        MainPage mainPage1 = new MainPage();
+        mainPage1.gotoLoginPage();
     }
 }

@@ -7,8 +7,8 @@ public class GdprTest extends TestCase {
     @Test
     public void testGdpr() {
         SingleDriver.getInstance();
-        PageGdpr pageGdpr = new PageGdpr();
-        //Page授权 page授权 = pageGdpr.gotoAuthPage();
-        pageGdpr.gotoAdsPage();
+        GdprPage gdprPage = new GdprPage();
+        gdprPage.gotoAdsPage();
+        //pageGdpr.gotoAuthPage();
     }
 }

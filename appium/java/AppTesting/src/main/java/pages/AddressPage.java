@@ -1,8 +1,12 @@
 package pages;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import utils.SingleDriver;
@@ -12,10 +16,11 @@ import utils.SingleDriver;
  * @date 2019-01-15 15:40
  */
 public class AddressPage extends BasePage {
+    public static AddressPage addressPage() { return new AddressPage(); }
+    private By normalAddress = By.xpath("//android.view.View[@text='常用邮寄地址：']");
     private By newAddress = By.xpath("//android.view.View[@text='新增邮寄地址']");
     private By saveAddress = By.xpath("//android.view.View[@text='保存']");
     private By editName = By.xpath("//android.widget.EditText[@text='请输入姓名']");
-
     private By noneName = By.xpath("//android.view.View[@text='请输入姓名']");
     private By noneMobile = By.xpath("//android.view.View[@text='请输入手机号']");
     /**
@@ -31,18 +36,17 @@ public class AddressPage extends BasePage {
 
     public void createAddress() {
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-        /**
-        MobileElement waitNormalAddress = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
-                .until(ExpectedConditions.visibilityOfElementLocated(newAddress));
-        */
+        find(normalAddress).click();
+        (new TouchAction(SingleDriver.getInstance()))
+                .press(PointOption.point(506, 1700)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))).moveTo(PointOption.point(506, 1092)).release().perform();
         find(newAddress).click();
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
         System.out.println("新建邮寄地址测试开始");
     }
 
     public void verifyRequiredFileds () {
-        SingleDriver.getInstance().manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
-        MobileElement waitNewAddress = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
+        //SingleDriver.getInstance().manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+        MobileElement waitNewAddress = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),12)
                 .until(ExpectedConditions.visibilityOfElementLocated(saveAddress));
         find(saveAddress).click();
         MobileElement waitNameToast = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),2)

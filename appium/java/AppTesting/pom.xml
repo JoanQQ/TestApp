@@ -7,6 +7,9 @@
     <groupId>hnair.com</groupId>
     <artifactId>AppTesting</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <aspectj.version>1.8.10</aspectj.version>
+    </properties>
     <repositories>
         <repository>
             <id>jitpack.io</id>
@@ -15,15 +18,21 @@
     </repositories>
     <dependencies>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>2.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>6.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13-beta-1</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.github.appium</groupId>
@@ -42,21 +51,11 @@
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit4</artifactId>
-            <version>2.9.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>2.9.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <properties>
-        <aspectj.version>1.8.10</aspectj.version>
-    </properties>
 
     <build>
         <plugins>
@@ -65,6 +64,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
                 <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>10</threadCount>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -78,14 +79,14 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                    <dependency>
                         <groupId>org.apache.maven.surefire</groupId>
                         <artifactId>surefire-junit47</artifactId>
                         <version>3.0.0-M3</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

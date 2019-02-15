@@ -9,7 +9,7 @@ import io.appium.java_client.touch.offset.PointOption;
 import utils.SingleDriver;
 
 public class AdsPage {
-    public static AdsPage pageAds() {
+    public static AdsPage adsPage() {
         return new AdsPage();
     }
 

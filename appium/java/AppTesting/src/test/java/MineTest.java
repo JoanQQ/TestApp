@@ -1,7 +1,10 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-import pages.Page首页;
+import pages.MainPage;
+import pages.MinePage;
 import utils.SingleDriver;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Phyllis
@@ -14,7 +17,9 @@ public class MineTest extends TestCase {
     @Test
     public void testMine() {
         SingleDriver.getInstance();
-        Page首页 page首页 = new Page首页();
-        page首页.gotoMinePage();
+        MainPage mainPage = new MainPage();
+        MinePage minePage = mainPage.gotoMinePage();
+        SingleDriver.getInstance().manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        minePage.gotoAddressPage();
     }
 }
