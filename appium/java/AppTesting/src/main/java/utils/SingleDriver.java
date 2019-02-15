@@ -28,9 +28,13 @@ public class SingleDriver {
             desiredCapabilities.setCapability("appPackage", "com.rytong.hnair.nightly");
             desiredCapabilities.setCapability("appActivity", "com.rytong.hnair.main.SplashActivity");
             desiredCapabilities.setCapability("autoGrantPermissions", true);
+            desiredCapabilities.setCapability("unicodeKeyboard", true);
+            /**
+            //desiredCapabilities.setCapability("resetKeyboard", true);
             //desiredCapabilities.setCapability("automationName","uiautomator2");
             //desiredCapabilities.setCapability("noReset", true);
             //desiredCapabilities.setCapability("app","/Users/phyllis/Downloads/7.1.0_nightly.55793.nightly.release.12622.7.1_3.apk");
+            */
 
             try {
                 driver = new AppiumDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
