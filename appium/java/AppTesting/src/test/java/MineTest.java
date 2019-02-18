@@ -1,26 +1,32 @@
 import junit.framework.TestCase;
 import org.junit.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import pages.*;
 import utils.SingleDriver;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Phyllis
  * @date 2019-02-14 14:03
  */
-public class MineTest extends TestCase {
+public class MineTest {
+    public static MinePage minePage;
+
     @BeforeClass
-    public static void beforeClass() {
+    public static void openApp() {
+        System.out.println ("BeforeClass");
         SingleDriver.getInstance();
-        GdprPage gdprPage = new GdprPage ( );
-        AdsPage adsPage = gdprPage.gotoAdsPage ( );
-        MainPage mainPage = adsPage.gotoMainPage ( );
-        final MinePage minePage = mainPage.gotoMinePage ( );
+        GdprPage gdprPage = new GdprPage();
+        AdsPage adsPage = gdprPage.gotoAdsPage();
+        MainPage mainPage = adsPage.gotoMainPage();
+        minePage = mainPage.gotoMinePage();
     }
 
     @Test
     public void testLogin() {
-        MinePage minePage = new MinePage();
         LoginPage loginPage = minePage.gotoLoginPage();
         MinePage minePage2 = loginPage.gotoMinePage("7050812098","121321");
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -39,6 +45,8 @@ public class MineTest extends TestCase {
     public void testCenterMenu() {
         MinePage minePage = new MinePage ();
         minePage.backFromOrder();
+        minePage.backFromCoupon ();
+        minePage.backFromFavor ();
     }
 
     @AfterClass

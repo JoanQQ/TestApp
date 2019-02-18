@@ -1,10 +1,8 @@
 import junit.framework.TestSuite;
 import junit.framework.Test;
-import utils.SingleDriver;
 
 /**
  * @author Phyllis
- * @Description ${todo}
  * @date 2019-02-14 13:35
  */
 public class TestallSuite {
@@ -15,7 +13,7 @@ public class TestallSuite {
         suite.addTestSuite(AdsTest.class);
         suite.addTestSuite(MainpageTest.class);
         suite.addTestSuite(LoginTest.class);
-        suite.addTestSuite(MineTest.class);
+        //suite.addTestSuite(MineTest.class);
         suite.addTestSuite(AddressTest.class);
         return suite;
     }

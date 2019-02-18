@@ -18,4 +18,12 @@ public class LoginPage extends BasePage {
 
         return new MainPage();
     }
+
+    public MinePage gotoMinePage(String username, String password) {
+        find(this.username).sendKeys(username);
+        find(this.password).sendKeys(password);
+        find(loginBtn).click();
+
+        return new MinePage();
+    }
 }
