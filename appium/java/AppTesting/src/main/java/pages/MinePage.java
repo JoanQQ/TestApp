@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class MinePage extends BasePage {
     public static MinePage minePage() { return new MinePage(); }
 
+    private By settingsIcon = By.id ("com.rytong.hnair.nightly:id/iv_setting_login");
     private By myOrder = By.xpath ("//android.widget.TextView[@text='订单管理']");
     private By myCoupon = By.xpath ("//android.widget.TextView[@text='我的优惠券']");
     private By myFavorite = By.xpath ("//android.widget.TextView[@text='我的收藏']");
@@ -35,6 +36,14 @@ public class MinePage extends BasePage {
         find(loginBtn).click();
 
         return new LoginPage();
+    }
+
+    public SettingsPage gotoSettingsPage() {
+        MobileElement settingIcon = (MobileElement) new WebDriverWait (SingleDriver.getInstance (),6)
+                .until (ExpectedConditions.visibilityOfElementLocated(settingsIcon));
+        find (settingsIcon).click ();
+
+        return new SettingsPage();
     }
 
     public String getUsername() {
