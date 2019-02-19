@@ -1,7 +1,6 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-import pages.MainPage;
-import pages.LoginPage;
+import pages.Main.MainPage;
 import utils.SingleDriver;
 
 /**

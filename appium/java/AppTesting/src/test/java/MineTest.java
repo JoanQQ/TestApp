@@ -1,25 +1,24 @@
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import junit.framework.TestCase;
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.*;
+import pages.Mine.SettingsPage;
 import utils.SingleDriver;
+import pages.Main.MainPage;
+import pages.Mine.MinePage;
 import java.util.concurrent.TimeUnit;
-
+import pages.Common.AdsPage;
+import pages.Common.GdprPage;
+import pages.Common.LoginPage;
 import static org.junit.Assert.assertEquals;
 
 /**
  * @author Phyllis
  * @date 2019-02-14 14:03
  */
-public class MineTest {
-    public static MinePage minePage;
-
+public class MineTest extends TestCase {
+    /**
+     * public static MinePage minePage;
     @BeforeClass
     public static void openApp() {
         System.out.println ("BeforeClass");
@@ -46,21 +45,14 @@ public class MineTest {
         assertEquals ("已实名认证", minePage2.getCertificationStatus ());
         System.out.println("Certification is correct");
     }
-
-    @Test
-    public void testSetting() {
-        System.out.println ("*** TEST SETTINGs ***");
-        minePage.gotoSettingsPage ().gotoPrivacyPolicy ();
-        SingleDriver.getInstance().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        String textTitle = SingleDriver.getInstance ().findElementByXPath ("//android.widget.TextView[@resource-id='com.rytong.hnair.nightly:id/tv_middle_title']").getText ();
-        assertEquals ("隐私条款",textTitle);
-        (new TouchAction (SingleDriver.getInstance ())).tap(PointOption.point (70, 160)).perform ();
-        System.out.println ("Privacy Policy is correct");
-    }
+    */
 
     @Test
     public void testCenterMenu() {
-        MinePage minePage = new MinePage ();
+        SingleDriver.getInstance ();
+        System.out.println ("\n" + "*** ACCESS CENTER-MENU SUB-PAGEs ***");
+        MainPage mainPage = new MainPage ();
+        MinePage minePage = mainPage.gotoMinePage ();
         minePage.backFromOrder();
         minePage.backFromCoupon ();
         minePage.backFromFavor ();
@@ -69,6 +61,6 @@ public class MineTest {
     @AfterClass
     public static void afterClass() {
         SingleDriver.quit ();
-        System.out.println("@AfterClass");
+        System.out.println("\n" + "@AfterClass");
     }
 }

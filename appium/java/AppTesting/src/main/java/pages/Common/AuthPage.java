@@ -1,4 +1,4 @@
-package pages;
+package pages.Common;
 
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;

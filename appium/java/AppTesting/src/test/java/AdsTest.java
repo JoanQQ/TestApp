@@ -1,7 +1,6 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-import pages.AdsPage;
-import pages.MainPage;
+import pages.Common.AdsPage;
 import utils.SingleDriver;
 
 /**

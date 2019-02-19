@@ -13,8 +13,10 @@ public class TestallSuite {
         suite.addTestSuite(AdsTest.class);
         suite.addTestSuite(MainpageTest.class);
         suite.addTestSuite(LoginTest.class);
-        //suite.addTestSuite(MineTest.class);
-        suite.addTestSuite(AddressTest.class);
+        suite.addTestSuite(MineTest.class);
+        suite.addTestSuite (ContactTest.class);
+        //suite.addTestSuite(AddressTest.class);
+        //suite.addTestSuite (SettingsTest.class);
         return suite;
     }
 }

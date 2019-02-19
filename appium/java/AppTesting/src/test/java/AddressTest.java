@@ -1,16 +1,18 @@
 import junit.framework.TestCase;
-import org.junit.AfterClass;
 import org.junit.Test;
-import pages.*;
+import pages.Mine.AddressPage;
+import pages.Mine.MinePage;
 import utils.SingleDriver;
 
 public class AddressTest extends TestCase {
     @Test
     public void testAddress() {
         SingleDriver.getInstance();
-        AddressPage addressPage = new AddressPage();
+        MinePage minePage = new MinePage ();
+        AddressPage addressPage = minePage.gotoAddressPage ();
         addressPage.createAddress();
         addressPage.verifyRequiredFileds();
+        addressPage.backtoMinePage ();
     }
 
     /**

@@ -28,6 +28,7 @@ public class SingleDriver {
             desiredCapabilities.setCapability("appActivity", "com.rytong.hnair.main.SplashActivity");
             desiredCapabilities.setCapability("autoGrantPermissions", true);
             desiredCapabilities.setCapability("unicodeKeyboard", true);
+            desiredCapabilities.setCapability ("clearSystemFiles", true);
             /**
             desiredCapabilities.setCapability("resetKeyboard", true);
             desiredCapabilities.setCapability("noReset", true);

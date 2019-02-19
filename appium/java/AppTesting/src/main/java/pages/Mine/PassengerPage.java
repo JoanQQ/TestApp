@@ -1,29 +1,29 @@
-package pages;
+package pages.Mine;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.Common.BasePage;
+import utils.SingleDriver;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.By;
-import utils.SingleDriver;
 
 /**
  * @author Phyllis
- * @date 2019-01-15 15:40
+ * @date 2019-02-19 09:38
  */
-public class AddressPage extends BasePage {
-    public static AddressPage addressPage() { return new AddressPage(); }
-    private By normalAddress = By.xpath("//android.view.View[@text='常用邮寄地址：']");
-    private By newAddress = By.xpath("//android.view.View[@text='新增邮寄地址']");
-    private By saveAddress = By.xpath("//android.view.View[@text='保存']");
+public class PassengerPage extends BasePage {
+    public static PassengerPage addressPage() { return new PassengerPage (); }
+    private By normalPassenger = By.xpath("//android.view.View[@text='常用乘机人']");
+    private By addPassenger = By.xpath("//android.view.View[@text='新增乘机人']");
+    private By savePassenger = By.xpath("//android.view.View[@text='保存']");
     private By editName = By.xpath("//android.widget.EditText[@text='请输入姓名']");
     private By noneName = By.xpath("//android.view.View[@text='请输入姓名']");
     private By noneMobile = By.xpath("//android.view.View[@text='请输入手机号']");
-    private By toastView = By.id("com.rytong.hnair.nightly:id/iv_user_center_menu");
     private By wrongMobile = By.xpath("//android.view.View[@text='请输入11位数字手机号码']");
     private By editMobile = By.xpath("//android.widget.EditText[@text='请输入手机号']");
     private By noneAddress = By.xpath("//android.view.View[@text='请输入收件地址']");
@@ -36,12 +36,12 @@ public class AddressPage extends BasePage {
     private By successfulNewAddress = By.xpath("//android.view.View[@text='新增成功']");
 
 
-    public void createAddress() {
+    public void addPassenger() {
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-        find(normalAddress).click();
+        find(normalPassenger).click();
         (new TouchAction(SingleDriver.getInstance()))
                 .press(PointOption.point(506, 1700)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))).moveTo(PointOption.point(506, 1092)).release().perform();
-        find(newAddress).click();
+        find(addPassenger).click();
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
         System.out.println("新建邮寄地址测试开始");
     }
@@ -49,8 +49,8 @@ public class AddressPage extends BasePage {
     public void verifyRequiredFileds () {
         //SingleDriver.getInstance().manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         MobileElement waitNewAddress = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),12)
-                .until(ExpectedConditions.visibilityOfElementLocated(saveAddress));
-        find(saveAddress).click();
+                .until(ExpectedConditions.visibilityOfElementLocated(savePassenger));
+        find(savePassenger).click();
         MobileElement waitNameToast = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),2)
                 .until(ExpectedConditions.visibilityOfElementLocated(noneName));
         String toastName = find(noneName).getAttribute("text");
@@ -58,14 +58,14 @@ public class AddressPage extends BasePage {
             System.out.println("姓名不能为空验证通过");
 
         find(editName).sendKeys("Appium/AndroidTest");
-        find(saveAddress).click();
+        find(savePassenger).click();
         MobileElement waitMobileToast1 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
                 .until(ExpectedConditions.visibilityOfElementLocated(noneMobile));
         String toastMobile1 = find(noneMobile).getAttribute("text");
         if (toastMobile1.equals("请输入手机号"))
             System.out.println("手机号不能为空验证通过");
         find(editMobile).sendKeys("166");
-        find(saveAddress).click();
+        find(savePassenger).click();
         MobileElement waitMobileToast2 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
                 .until(ExpectedConditions.visibilityOfElementLocated(wrongMobile));
         String toastMobile2 = find(wrongMobile).getAttribute("text");
@@ -74,14 +74,14 @@ public class AddressPage extends BasePage {
 
         editMobile = By.xpath("//android.widget.EditText[@text='166']");
         find(editMobile).sendKeys("18618491223");
-        find(saveAddress).click();
+        find(savePassenger).click();
         MobileElement waitAddressToast1 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
                 .until(ExpectedConditions.visibilityOfElementLocated(noneAddress));
         String toastAddress1 = find(noneAddress).getAttribute("text");
         if (toastAddress1.equals("请输入收件地址"))
             System.out.println("邮寄地址不能为空验证通过");
         find(editAddress).sendKeys("测试地址");
-        find(saveAddress).click();
+        find(savePassenger).click();
         MobileElement waitAddressToast2 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
                 .until(ExpectedConditions.visibilityOfElementLocated(wrongAddress));
         String toastAddress2 = find(wrongAddress).getAttribute("text");
@@ -90,14 +90,14 @@ public class AddressPage extends BasePage {
 
         editAddress = By.xpath("//android.widget.EditText[@text='测试地址']");
         find(editAddress).sendKeys("测试邮寄地址大于十个汉字测试");
-        find(saveAddress).click();
+        find(savePassenger).click();
         MobileElement waitPostcodeToast1 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
                 .until(ExpectedConditions.visibilityOfElementLocated(nonePostcode));
         String toastPostcode1 = find(nonePostcode).getAttribute("text");
         if (toastPostcode1.equals("请输入邮政编码"))
             System.out.println("邮政编码不能为空验证通过");
         find(editPostcode).sendKeys("123");
-        find(saveAddress).click();
+        find(savePassenger).click();
         MobileElement waitPostcodeToast2 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
                 .until(ExpectedConditions.visibilityOfElementLocated(wrongPostcode));
         String toastPostcode2 = find(wrongPostcode).getAttribute("text");
@@ -106,7 +106,7 @@ public class AddressPage extends BasePage {
 
         editPostcode = By.xpath("//android.widget.EditText[@text='123']");
         find(editPostcode).sendKeys("123456");
-        find(saveAddress).click();
+        find(savePassenger).click();
         MobileElement waitCommitToast = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),1)
                 .until(ExpectedConditions.visibilityOfElementLocated(goCommitt));
         String toastCommit = find(goCommitt).getAttribute("text");
@@ -117,5 +117,10 @@ public class AddressPage extends BasePage {
         String toastAdded = find(successfulNewAddress).getAttribute("text");
         if (toastAdded.equals("新增成功"))
             System.out.println("新增邮寄地址验证通过");
+    }
+
+    public MinePage backtoSettingPage() {
+        (new TouchAction (SingleDriver.getInstance ())).tap(PointOption.point (70, 160)).perform ();
+        return new MinePage ();
     }
 }

@@ -1,4 +1,4 @@
-package pages;
+package pages.Common;
 
 import org.openqa.selenium.By;
 import java.time.Duration;
@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import pages.Main.MainPage;
 import utils.SingleDriver;
 
 public class AdsPage {

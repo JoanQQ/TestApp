@@ -1,8 +1,7 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-import pages.LoginPage;
 import utils.SingleDriver;
-
+import pages.Common.LoginPage;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,6 +29,5 @@ public class LoginTest extends TestCase {
         SingleDriver.getInstance();
         LoginPage loginPage = new LoginPage();
         loginPage.gotoMainPage("7050812098","121321");
-        SingleDriver.getInstance().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 }

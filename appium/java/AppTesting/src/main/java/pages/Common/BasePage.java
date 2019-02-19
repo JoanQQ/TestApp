@@ -1,11 +1,11 @@
-package pages;
+package pages.Common;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.SingleDriver;
 
 public class BasePage {
-    static WebElement find(By locator) {
+    public static WebElement find(By locator) {
         return SingleDriver.getInstance().findElement(locator);
     }
 

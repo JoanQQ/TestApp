@@ -1,6 +1,6 @@
 import junit.framework.TestCase;
 import org.junit.Test;
-import pages.*;
+import pages.Common.GdprPage;
 import utils.SingleDriver;
 
 public class GdprTest extends TestCase {

@@ -1,9 +1,8 @@
-package pages;
+package pages.Common;
 
 import org.openqa.selenium.By;
-import utils.SingleDriver;
-
-import java.util.concurrent.TimeUnit;
+import pages.Main.MainPage;
+import pages.Mine.MinePage;
 
 public class LoginPage extends BasePage {
     private By username = By.id("com.rytong.hnair.nightly:id/et_username");

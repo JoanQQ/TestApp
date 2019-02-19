@@ -1,4 +1,4 @@
-package pages;
+package pages.Common;
 
 import org.openqa.selenium.By;
 import utils.SingleDriver;
