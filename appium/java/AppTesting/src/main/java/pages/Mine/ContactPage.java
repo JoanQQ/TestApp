@@ -30,6 +30,12 @@ public class ContactPage extends BasePage {
     private By editEmail = By.xpath("//android.widget.EditText[@text='请输入Email']");
     private By goCommitt = By.xpath("//android.view.View[@text='正在提交数据...']");
     private By successfulNewAddress = By.xpath("//android.view.View[@text='新增成功']");
+    private By delIcon = By.xpath ("//android.widget.Image[@resource-id='图层_1']");
+    private By delBtn = By.xpath ("//android.view.View[@text='删除']");
+    private By delText = By.xpath ("//android.view.View[@text='确定要删除所选常用联系人吗？']");
+    private By cancelDelBtn = By.xpath ("//android.view.View[@text='取消']");
+    private By confirmDelBtn = By.xpath ("//android.view.View[@text='确定']");
+    private By successfulDeletion = By.xpath ("//android.view.View[@text='删除成功！']");
 
     public void addContact() {
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
@@ -52,6 +58,7 @@ public class ContactPage extends BasePage {
             System.out.println("姓名不能为空验证通过");
 
         find(editName).sendKeys("Contact/Nametest");
+        /**
         find(saveContact).click();
         MobileElement waitMobileToast1 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
                 .until(ExpectedConditions.visibilityOfElementLocated(noneMobile));
@@ -68,7 +75,12 @@ public class ContactPage extends BasePage {
 
         editMobile = By.xpath("//android.widget.EditText[@text='166']");
         find(editMobile).clear();
+        editMobile = By.xpath("//android.widget.EditText[@text='请输入手机号']");
+        MobileElement waitCommitToast = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
+                .until(ExpectedConditions.visibilityOfElementLocated(editMobile));
+        */
         find(editMobile).sendKeys("18618491223");
+        /**
         find(editEmail).sendKeys ("87524112@qq");
         find(saveContact).click();
         MobileElement waitAddressToast1 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
@@ -79,18 +91,45 @@ public class ContactPage extends BasePage {
 
         editEmail = By.xpath("//android.widget.EditText[@text='87524112@qq']");
         find(editEmail).clear();
+        editEmail = By.xpath("//android.widget.EditText[@text='请输入Email']");
+        MobileElement waitCommitToast2 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
+                .until(ExpectedConditions.visibilityOfElementLocated(editEmail));
+        */
         find(editEmail).sendKeys("87524112@qq.com");
         find(saveContact).click();
-        MobileElement waitCommitToast = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),1)
+        MobileElement waitCommitToast3 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),1)
                 .until(ExpectedConditions.visibilityOfElementLocated(goCommitt));
         String toastCommit = find(goCommitt).getAttribute("text");
         if (toastCommit.equals("正在提交数据..."))
-            System.out.println("提交新增邮寄地址中...");
-        MobileElement waitAddedToast = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
+            System.out.println("提交新增联系人中...");
+        MobileElement waitAddedToast4 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
                 .until(ExpectedConditions.visibilityOfElementLocated(successfulNewAddress));
         String toastAdded = find(successfulNewAddress).getAttribute("text");
         if (toastAdded.equals("新增成功"))
-            System.out.println("新增邮寄地址验证通过");
+            System.out.println("新增联系人验证通过");
+    }
+
+    public void delContact() {
+        MobileElement waitDelContact = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),15)
+                .until(ExpectedConditions.visibilityOfElementLocated(delIcon));
+        find(delIcon).click();
+        SingleDriver.getInstance().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        MobileElement waitDelBtn = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
+                .until(ExpectedConditions.visibilityOfElementLocated(delBtn));
+        (new TouchAction (SingleDriver.getInstance ())).tap(PointOption.point (105, 305)).perform ();
+        find(delBtn).click();
+        MobileElement waitDelText = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
+                .until(ExpectedConditions.visibilityOfElementLocated(delText));
+        find(cancelDelBtn).click ();
+        find(delBtn).click();
+        MobileElement waitCommitToast2 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
+                .until(ExpectedConditions.visibilityOfElementLocated(delText));
+        find(confirmDelBtn).click ();
+        MobileElement waitAddedToast = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
+                .until(ExpectedConditions.visibilityOfElementLocated(successfulDeletion));
+        String taostDeleted = find(successfulDeletion).getAttribute ("text");
+        if (taostDeleted.equals ("删除成功！"))
+            System.out.println ("删除联系人验证通过");
     }
 
     public MinePage backtoMinePage() {

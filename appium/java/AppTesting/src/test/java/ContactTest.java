@@ -15,9 +15,10 @@ import static org.junit.Assert.assertEquals;
  * @author Phyllis
  * @date 2019-02-19 09:41
  */
-public class ContactTest extends TestCase {
-    /**
-     * public static MinePage minePage1, minePage2;
+public class ContactTest {
+
+    //public static MinePage minePage1,minePage2;
+
     @BeforeClass
     public static void openApp() {
         System.out.println ("BeforeClass");
@@ -25,25 +26,28 @@ public class ContactTest extends TestCase {
         GdprPage gdprPage = new GdprPage();
         AdsPage adsPage = gdprPage.gotoAdsPage();
         MainPage mainPage = adsPage.gotoMainPage();
-        minePage1 = mainPage.gotoMinePage ();
+        //MinePage minePage1 = mainPage.gotoMinePage ();
+        mainPage.gotoMinePage ();
     }
 
     @Test
     public void testLogin() {
+        SingleDriver.getInstance ();
         System.out.println ("*** TEST LOGIN ***");
-        LoginPage loginPage = minePage1.gotoLoginPage();
-        minePage2 = loginPage.gotoMinePage("7050812098","121321");
+        MinePage minePage = new MinePage ();
+        LoginPage loginPage = minePage.gotoLoginPage();
+        loginPage.gotoMinePage("7050812098","121321");
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
-    */
 
     @Test
     public void testContact() {
         SingleDriver.getInstance ();
         MinePage minePage = new MinePage ();
         ContactPage contactPage = minePage.gotoContactPage ();
-        contactPage.addContact ();
-        contactPage.verifyRequiredFileds ();
+        //contactPage.addContact ();
+        //contactPage.verifyRequiredFileds ();
+        contactPage.delContact ();
         contactPage.backtoMinePage ();
     }
 }
