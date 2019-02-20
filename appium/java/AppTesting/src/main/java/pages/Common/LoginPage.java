@@ -3,6 +3,7 @@ package pages.Common;
 import org.openqa.selenium.By;
 import pages.Main.MainPage;
 import pages.Mine.MinePage;
+import pages.Mine.PassengerPage;
 
 public class LoginPage extends BasePage {
     private By username = By.id("com.rytong.hnair.nightly:id/et_username");
@@ -24,5 +25,13 @@ public class LoginPage extends BasePage {
         find(loginBtn).click();
 
         return new MinePage();
+    }
+
+    public PassengerPage gotoPassengerPage(String username, String password) {
+        find(this.username).sendKeys(username);
+        find(this.password).sendKeys(password);
+        find(loginBtn).click();
+
+        return new PassengerPage ();
     }
 }

@@ -30,4 +30,10 @@ public class MainPage {
 
         return new MinePage();
     }
+
+    public void cancelUpgrade() {
+        MobileElement waitAddressToast2 = (MobileElement) new WebDriverWait (SingleDriver.getInstance(),6)
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("com.rytong.hnair.nightly:id/btn_cancel")));
+        SingleDriver.getInstance().findElement(By.id("com.rytong.hnair.nightly:id/btn_cancel")).click();
+    }
 }

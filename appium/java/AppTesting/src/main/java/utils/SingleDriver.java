@@ -29,9 +29,9 @@ public class SingleDriver {
             desiredCapabilities.setCapability("autoGrantPermissions", true);
             desiredCapabilities.setCapability("unicodeKeyboard", true);
             desiredCapabilities.setCapability ("clearSystemFiles", true);
+            desiredCapabilities.setCapability("noReset", true);
             /**
             desiredCapabilities.setCapability("resetKeyboard", true);
-            desiredCapabilities.setCapability("noReset", true);
              desiredCapabilities.setCapability("automationName","uiautomator2");
             desiredCapabilities.setCapability("app","/Users/phyllis/Downloads/7.1.0_nightly.55793.nightly.release.12622.7.1_3.apk");
             */

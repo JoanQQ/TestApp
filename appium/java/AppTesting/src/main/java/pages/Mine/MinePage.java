@@ -1,14 +1,18 @@
 package pages.Mine;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
+import org.apache.commons.lang3.ObjectUtils;
 import org.openqa.selenium.By;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.Common.BasePage;
 import pages.Common.LoginPage;
+import sun.rmi.runtime.Log;
 import utils.SingleDriver;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class MinePage extends BasePage {
@@ -20,21 +24,20 @@ public class MinePage extends BasePage {
     private By myFavorite = By.xpath ("//android.widget.TextView[@text='我的收藏']");
 
     private By loginBtn = By.id("com.rytong.hnair.nightly:id/bt_user_index_login");
+    private By normalPassenger = By.xpath("//android.widget.TextView[@text='常用乘机人' and @instance='15']");
     private By normalContact = By.xpath("//android.widget.TextView[@text='常用联系人' and @instance='16']");
     private By normalAddress = By.xpath("//android.widget.TextView[@text='常用邮寄地址' and @instance='17']");
 
-    public String getUsername() {
-        return find(By.id("com.rytong.hnair.nightly:id/tv_user_userName")).getText();
-    }
+    private String userNameID = "com.rytong.hnair.nightly:id/tv_user_userName";
+    public String getUsername() { return find(By.id(("com.rytong.hnair.nightly:id/tv_user_userName"))).getText(); }
     public String getFfpid() {
         return find(By.id("com.rytong.hnair.nightly:id/tv_flightCard")).getText();
     }
     public String getScore() {
         return find(By.id("com.rytong.hnair.nightly:id/tv_avPoint")).getText();
     }
-    public String getCertificationStatus() {
-        return find(By.id("com.rytong.hnair.nightly:id/ll_already_realConfirm")).getText();
-    }
+    private String cerStatusID = "com.rytong.hnair.nightly:id/ll_already_realConfirm";
+    public String getCertificationStatus() { return find(By.id(cerStatusID)).getText(); }
 
     public void backFromOrder() {
         find(myOrder).click();
@@ -93,4 +96,38 @@ public class MinePage extends BasePage {
 
         return new ContactPage ();
     }
+
+    public PassengerPage gotoPassengerPage() {
+        SingleDriver.getInstance().manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+        if (SingleDriver.getInstance ().getPageSource ().contains ("登录/注册")) {
+            MobileElement searchToPassenger = (MobileElement) new WebDriverWait(SingleDriver.getInstance(), 10)
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@text='常用乘机人']")));
+            find(By.xpath("//android.widget.TextView[@text='常用乘机人']")).click();
+            LoginPage loginPage = new LoginPage ();
+            loginPage.gotoPassengerPage("7050812098","121321");
+        }
+        else if (SingleDriver.getInstance ().getPageSource ().contains ("认证")) {
+            MobileElement searchToPassenger = (MobileElement) new WebDriverWait(SingleDriver.getInstance(), 6)
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@instance='15' and @text='常用乘机人']")));
+            find(normalPassenger).click();
+        }else {
+            System.out.println ("*** 常用乘机人验证失败 ***");
+        }
+        return new PassengerPage ();
+    }
+
+    /**
+    public Boolean isLogin() {
+        try {
+            find(loginBtn).isDisplayed ();
+            System.out.println ("*** 用户尚未登录 ***");
+            return false;
+        } catch (NoSuchElementException e) {
+            find(By.id("com.rytong.hnair.nightly:id/tv_avPoint")).isDisplayed ();
+            System.out.println ("*** 用户已登录 ***");
+            System.out.println (e);
+            return true;
+        }
+    }
+    */
 }
