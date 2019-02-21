@@ -14,9 +14,11 @@ public class TestallSuite {
         suite.addTestSuite(MainpageTest.class);
         suite.addTestSuite(LoginTest.class);
         suite.addTestSuite(MineTest.class);
-        //suite.addTestSuite (ContactTest.class);
-        //suite.addTestSuite(AddressTest.class);
-        //suite.addTestSuite (SettingsTest.class);
+        suite.addTestSuite (SettingsTest.class);
+        //suite.addTestSuite (PassengerTest.class);
+        suite.addTestSuite (ContactTest.class);
+        suite.addTestSuite(AddressTest.class);
+        System.out.println ("*** HNA App Test has been done ***");
         return suite;
     }
 }

@@ -11,14 +11,7 @@ public class AddressTest extends TestCase {
         MinePage minePage = new MinePage ();
         AddressPage addressPage = minePage.gotoAddressPage ();
         addressPage.createAddress();
-        addressPage.verifyRequiredFileds();
+        //addressPage.verifyRequiredFileds();
         addressPage.backtoMinePage ();
     }
-
-    /**
-    @AfterClass
-    public void tearDown() {
-        SingleDriver.getInstance().quit();
-    }
-    */
 }

@@ -29,7 +29,8 @@ public class SingleDriver {
             desiredCapabilities.setCapability("autoGrantPermissions", true);
             desiredCapabilities.setCapability("unicodeKeyboard", true);
             desiredCapabilities.setCapability ("clearSystemFiles", true);
-            desiredCapabilities.setCapability("noReset", true);
+            desiredCapabilities.setCapability ("newCommandTimeout","300");
+            //desiredCapabilities.setCapability("noReset", true);
             /**
             desiredCapabilities.setCapability("resetKeyboard", true);
              desiredCapabilities.setCapability("automationName","uiautomator2");

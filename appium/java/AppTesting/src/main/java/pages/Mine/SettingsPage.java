@@ -32,7 +32,7 @@ public class SettingsPage extends BasePage {
     }
 
     public MinePage backtoMinePage() {
-        MobileElement waitOrders = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
+        MobileElement waitOrders = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
                 .until(ExpectedConditions.visibilityOfElementLocated(newmsgSwitch));
         (new TouchAction (SingleDriver.getInstance ())).tap(PointOption.point (70, 160)).perform ();
         return new MinePage ();

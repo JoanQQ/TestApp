@@ -97,11 +97,13 @@ public class ContactPage extends BasePage {
         */
         find(editEmail).sendKeys("87524112@qq.com");
         find(saveContact).click();
-        MobileElement waitCommitToast3 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),1)
+        /**
+        MobileElement waitCommitToast3 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),2)
                 .until(ExpectedConditions.visibilityOfElementLocated(goCommitt));
         String toastCommit = find(goCommitt).getAttribute("text");
         if (toastCommit.equals("正在提交数据..."))
             System.out.println("提交新增联系人中...");
+        */
         MobileElement waitAddedToast4 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
                 .until(ExpectedConditions.visibilityOfElementLocated(successfulNewAddress));
         String toastAdded = find(successfulNewAddress).getAttribute("text");
@@ -130,6 +132,9 @@ public class ContactPage extends BasePage {
         String taostDeleted = find(successfulDeletion).getAttribute ("text");
         if (taostDeleted.equals ("删除成功！"))
             System.out.println ("删除联系人验证通过");
+        MobileElement waitDelContact2 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
+                .until(ExpectedConditions.visibilityOfElementLocated(delIcon));
+        find (delIcon).click ();
     }
 
     public MinePage backtoMinePage() {

@@ -1,18 +1,14 @@
 package pages.Mine;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
-import org.apache.commons.lang3.ObjectUtils;
 import org.openqa.selenium.By;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.Common.BasePage;
 import pages.Common.LoginPage;
-import sun.rmi.runtime.Log;
 import utils.SingleDriver;
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class MinePage extends BasePage {

@@ -15,10 +15,11 @@ import static org.junit.Assert.assertEquals;
  * @author Phyllis
  * @date 2019-02-19 09:41
  */
-public class ContactTest {
+public class ContactTest extends TestCase {
 
     //public static MinePage minePage1,minePage2;
 
+    /**
     @BeforeClass
     public static void openApp() {
         System.out.println ("BeforeClass");
@@ -39,14 +40,15 @@ public class ContactTest {
         loginPage.gotoMinePage("7050812098","121321");
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
+    */
 
     @Test
     public void testContact() {
         SingleDriver.getInstance ();
         MinePage minePage = new MinePage ();
         ContactPage contactPage = minePage.gotoContactPage ();
-        //contactPage.addContact ();
-        //contactPage.verifyRequiredFileds ();
+        contactPage.addContact ();
+        contactPage.verifyRequiredFileds ();
         contactPage.delContact ();
         contactPage.backtoMinePage ();
     }
