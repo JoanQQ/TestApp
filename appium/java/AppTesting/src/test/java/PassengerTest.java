@@ -9,6 +9,7 @@ import pages.Common.AdsPage;
 import pages.Common.GdprPage;
 import pages.Main.MainPage;
 import pages.Mine.MinePage;
+import pages.Mine.PassengerPage;
 import utils.SingleDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -34,6 +35,9 @@ public class PassengerTest {
     @Test
     public void testPassenger() {
         MinePage minePage = new MinePage ();
-        minePage.gotoPassengerPage();
+        PassengerPage passengerPage = minePage.gotoPassengerPage();
+        passengerPage.addPassenger ();
+        passengerPage.delPassenger ();
+        passengerPage.backtoSettingPage ();
     }
 }
