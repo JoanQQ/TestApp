@@ -35,6 +35,10 @@ public class AddressPage extends BasePage {
     private By goCommitt = By.xpath("//android.view.View[@text='正在提交数据...']");
     private By successfulNewAddress = By.xpath("//android.view.View[@text='新增成功']");
     private By toastView = By.id("com.rytong.hnair.nightly:id/iv_user_center_menu");
+    //private By delIcon = By.xpath ("//android.widget.Image[@='']");
+    private By delBtn = By.xpath ("//android.view.View[@text='确定']");
+    private By cancelDelBtn = By.xpath ("//android.view.View[@text='取消']");
+    private By successfulDeletion = By.xpath ("//android.view.View[@text='删除成功！']");
 
     public void createAddress() {
         SingleDriver.getInstance().manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
@@ -133,6 +137,28 @@ public class AddressPage extends BasePage {
         String toastAdded = find(successfulNewAddress).getAttribute("text");
         if (toastAdded.equals("新增成功"))
             System.out.println("新增邮寄地址验证通过");
+    }
+
+    public void delNewAddress() {
+        MobileElement waitDelAdd1 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),15)
+                .until(ExpectedConditions.visibilityOfElementLocated(newAddress));
+        (new TouchAction(SingleDriver.getInstance ())).tap(PointOption.point (960,963)).perform();
+        SingleDriver.getInstance().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        MobileElement waitDelText = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),3)
+                .until(ExpectedConditions.visibilityOfElementLocated(cancelDelBtn));
+        find(cancelDelBtn).click ();
+        MobileElement waitDelAdd2 = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
+                .until(ExpectedConditions.visibilityOfElementLocated(newAddress));
+        (new TouchAction(SingleDriver.getInstance ())).tap(PointOption.point (960,963)).perform();
+        MobileElement waitDelBtn = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
+                .until(ExpectedConditions.visibilityOfElementLocated(delBtn));
+        (new TouchAction (SingleDriver.getInstance ())).tap(PointOption.point (105, 305)).perform ();
+        find(delBtn).click();
+        MobileElement waitDelToast = (MobileElement) new WebDriverWait(SingleDriver.getInstance(),5)
+                .until(ExpectedConditions.visibilityOfElementLocated(successfulDeletion));
+        String taostDeleted = find(successfulDeletion).getAttribute ("text");
+        if (taostDeleted.equals ("删除成功！"))
+            System.out.println ("删除联系人验证通过");
     }
 
     public MinePage backtoMinePage() {

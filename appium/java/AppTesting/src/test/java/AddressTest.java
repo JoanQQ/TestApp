@@ -12,6 +12,7 @@ public class AddressTest extends TestCase {
         AddressPage addressPage = minePage.gotoAddressPage ();
         addressPage.createAddress();
         //addressPage.verifyRequiredFileds();
+        addressPage.delNewAddress ();
         addressPage.backtoMinePage ();
     }
 }

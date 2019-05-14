@@ -1,4 +1,5 @@
 import io.appium.java_client.MobileElement;
+import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
