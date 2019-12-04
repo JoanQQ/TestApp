@@ -22,8 +22,9 @@ public class SingleDriver {
     public static AppiumDriver<WebElement> getInstance() {
         if(driver == null) {
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-            desiredCapabilities.setCapability("deviceName", "emulator-5554");
+            desiredCapabilities.setCapability("automationName","appium");
             desiredCapabilities.setCapability("platformName", "android");
+            desiredCapabilities.setCapability("deviceName", "emulator-5554");
             desiredCapabilities.setCapability("appPackage", "com.rytong.hnair.nightly");
             desiredCapabilities.setCapability("appActivity", "com.rytong.hnair.main.SplashActivity");
             desiredCapabilities.setCapability("autoGrantPermissions", true);
@@ -33,7 +34,6 @@ public class SingleDriver {
             //desiredCapabilities.setCapability("noReset", true);
             /**
             desiredCapabilities.setCapability("resetKeyboard", true);
-             desiredCapabilities.setCapability("automationName","uiautomator2");
             desiredCapabilities.setCapability("app","/Users/phyllis/Downloads/7.1.0_nightly.55793.nightly.release.12622.7.1_3.apk");
             */
 
